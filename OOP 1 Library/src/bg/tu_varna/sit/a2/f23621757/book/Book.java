@@ -1,6 +1,5 @@
 package bg.tu_varna.sit.a2.f23621757.book;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Book {
@@ -9,21 +8,23 @@ public class Book {
     private String genre;
     private String description;
     private int yearOfPublishing;
-    private String keyWords;
+    private String tag;
     private double rating;
-    private String libraryID;
+    private String isbn;
 
-    public Book(String author, String title, String genre, String description, int yearOfPublishing, String keyWords, double rating, String libraryID) {
+    public Book(String author, String title, String genre, String description, int yearOfPublishing, String tag, double rating, String isbn) {
         this.author = author;
         this.title = title;
         this.genre = genre;
         this.description = description;
         this.yearOfPublishing = yearOfPublishing;
-        this.keyWords = keyWords;
+        this.tag = tag;
         this.rating = rating;
-        this.libraryID = libraryID;
+        this.isbn = isbn;
     }
+    public Book (){
 
+    }
     public String getAuthor() {
         return author;
     }
@@ -64,12 +65,12 @@ public class Book {
         this.yearOfPublishing = yearOfPublishing;
     }
 
-    public String getKeyWords() {
-        return keyWords;
+    public String getTag() {
+        return tag;
     }
 
-    public void setKeyWords(String keyWords) {
-        this.keyWords = keyWords;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public double getRating() {
@@ -80,12 +81,12 @@ public class Book {
         this.rating = rating;
     }
 
-    public String getLibraryID() {
-        return libraryID;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setLibraryID(String libraryID) {
-        this.libraryID = libraryID;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     @Override
@@ -93,12 +94,12 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return yearOfPublishing == book.yearOfPublishing && Double.compare(rating, book.rating) == 0 && Objects.equals(author, book.author) && Objects.equals(title, book.title) && Objects.equals(genre, book.genre) && Objects.equals(description, book.description) && Objects.equals(keyWords, book.keyWords) && Objects.equals(libraryID, book.libraryID);
+        return yearOfPublishing == book.yearOfPublishing && Double.compare(rating, book.rating) == 0 && Objects.equals(author, book.author) && Objects.equals(title, book.title) && Objects.equals(genre, book.genre) && Objects.equals(description, book.description) && Objects.equals(tag, book.tag) && Objects.equals(isbn, book.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(author, title, genre, description, yearOfPublishing, keyWords, rating, libraryID);
+        return Objects.hash(author, title, genre, description, yearOfPublishing, tag, rating, isbn);
     }
 
     @Override
@@ -109,9 +110,9 @@ public class Book {
                 ", genre='" + genre + '\'' +
                 ", description='" + description + '\'' +
                 ", yearOfPublishing=" + yearOfPublishing +
-                ", keyWords='" + keyWords + '\'' +
+                ", keyWords='" + tag + '\'' +
                 ", rating=" + rating +
-                ", libraryID='" + libraryID + '\'' +
+                ", libraryID='" + isbn + '\'' +
                 '}';
     }
 }
