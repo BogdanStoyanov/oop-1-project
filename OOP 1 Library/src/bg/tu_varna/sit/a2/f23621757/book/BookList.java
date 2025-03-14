@@ -38,6 +38,16 @@ public class BookList {
         bookList.add(newBook);
     }
 
+    public void remove(String isbn)
+    {
+        for(Book book:bookList){
+            if(book.getIsbn().equals(isbn)){
+                bookList.remove(book);
+                break;
+            }
+        }
+    }
+
     public void all() {
         for (Book item : bookList) {
             System.out.println(item.getTitle());
@@ -64,45 +74,44 @@ public class BookList {
     }
 
     public void find(String option, String search) {
-        switch (option) {
-            case "title":
-                for (Book item : bookList) {
-                    if (item.getTitle().equalsIgnoreCase(search)) {
-                        System.out.println(item.getTitle());
-                        System.out.println(item.getAuthor());
-                        System.out.println(item.getGenre());
-                        System.out.println(item.getIsbn());
+        for(Book book:bookList){
+            switch (option){
+                case "title":{
+                    if (book.getTitle().equalsIgnoreCase(search)){
+                        System.out.println(book.getTitle());
+                        System.out.println(book.getAuthor());
+                        System.out.println(book.getGenre());
+                        System.out.println(book.getIsbn());
                         break;
                     }
+                    break;
                 }
-                break;
 
-            case "author":
-                for (Book item : bookList) {
-                    if (item.getAuthor().equalsIgnoreCase(search)) {
-                        System.out.println(item.getTitle());
-                        System.out.println(item.getAuthor());
-                        System.out.println(item.getGenre());
-                        System.out.println(item.getIsbn());
+                case "author":{
+                    if (book.getAuthor().equalsIgnoreCase(search)) {
+                        System.out.println(book.getTitle());
+                        System.out.println(book.getAuthor());
+                        System.out.println(book.getGenre());
+                        System.out.println(book.getIsbn());
                         break;
                     }
+                    break;
                 }
-                break;
 
-            case "tag":
-                for (Book item : bookList) {
-                    if (item.getTag().equalsIgnoreCase(search)) {
-                        System.out.println(item.getTitle());
-                        System.out.println(item.getAuthor());
-                        System.out.println(item.getGenre());
-                        System.out.println(item.getIsbn());
+                case "tag":{
+                    if (book.getTag().equalsIgnoreCase(search)) {
+                        System.out.println(book.getTitle());
+                        System.out.println(book.getAuthor());
+                        System.out.println(book.getGenre());
+                        System.out.println(book.getIsbn());
                         break;
                     }
+                    break;
                 }
-                break;
+            }
         }
     }
-
+    
     //public void view Нямам идея какво се иска
 
     
