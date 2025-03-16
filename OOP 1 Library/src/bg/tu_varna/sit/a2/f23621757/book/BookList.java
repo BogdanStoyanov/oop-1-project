@@ -1,5 +1,9 @@
 package bg.tu_varna.sit.a2.f23621757.book;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,10 +22,10 @@ public class BookList {
     public void add(){
         Book newBook = new Book();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Title: ");
-        newBook.setTitle(scanner.nextLine());
         System.out.println("Author: ");
         newBook.setAuthor(scanner.nextLine());
+        System.out.println("Title: ");
+        newBook.setTitle(scanner.nextLine());
         System.out.println("Genre: ");
         newBook.setGenre(scanner.nextLine());
         System.out.println("Description: ");
@@ -74,10 +78,10 @@ public class BookList {
     }
 
     public void find(String option, String search) {
-        for(Book book:bookList){
-            switch (option){
-                case "title":{
-                    if (book.getTitle().equalsIgnoreCase(search)){
+        for (Book book : bookList) {
+            switch (option) {
+                case "title": {
+                    if (book.getTitle().equalsIgnoreCase(search)) {
                         System.out.println(book.getTitle());
                         System.out.println(book.getAuthor());
                         System.out.println(book.getGenre());
@@ -87,7 +91,7 @@ public class BookList {
                     break;
                 }
 
-                case "author":{
+                case "author": {
                     if (book.getAuthor().equalsIgnoreCase(search)) {
                         System.out.println(book.getTitle());
                         System.out.println(book.getAuthor());
@@ -98,7 +102,7 @@ public class BookList {
                     break;
                 }
 
-                case "tag":{
+                case "tag": {
                     if (book.getTag().equalsIgnoreCase(search)) {
                         System.out.println(book.getTitle());
                         System.out.println(book.getAuthor());
@@ -111,8 +115,28 @@ public class BookList {
             }
         }
     }
-    
-    //public void view Нямам идея какво се иска
 
-    
+    public void readFromFile(String fileName) {
+        String filePath = System.getProperty("user.dir") + File.separator + fileName;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Book book = new Book();
+                book.setAuthor(line = reader.readLine());
+                book.setTitle(line = reader.readLine());
+                book.setGenre(line = reader.readLine());
+                book.setDescription(line = reader.readLine());
+                book.setYearOfPublishing(Integer.parseInt(line = reader.readLine()));
+                book.setTag(line = reader.readLine());
+                book.setRating(Double.parseDouble(line = reader.readLine()));
+                book.setIsbn(line = reader.readLine());
+                line = reader.readLine();
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+
 }

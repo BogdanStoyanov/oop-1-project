@@ -2,6 +2,8 @@ package bg.tu_varna.sit.a2.f23621757.file;
 
 import bg.tu_varna.sit.a2.f23621757.book.Book;
 import bg.tu_varna.sit.a2.f23621757.book.BookList;
+import bg.tu_varna.sit.a2.f23621757.user.User;
+import bg.tu_varna.sit.a2.f23621757.user.UserList;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,27 +11,40 @@ import java.io.IOException;
 
 
 public class WriterToFile {
-    public static void writeBooksToFile(BookList bookList, String filename) {
-        if (!filename.endsWith(".txt")) {
-            filename = filename.concat(".txt");
-        }
-        String filePath = System.getProperty("user.dir") + File.separator + filename;
+    public static void writeBooksToFile(BookList bookList,String fileName) {
+        String filePath = System.getProperty("user.dir") + File.separator + fileName;
 
         try (FileWriter writer = new FileWriter(filePath)) {
-            for (Book item : bookList.getBookList()) {
-                writer.write(item.getAuthor() + "\n");
-                writer.write(item.getTitle() + "\n");
-                writer.write(item.getGenre() + "\n");
-                writer.write(item.getDescription() + "\n");
-                writer.write(item.getYearOfPublishing() + "\n");
-                writer.write(item.getTag() + "\n");
-                writer.write(item.getRating() + "\n");
-                writer.write(item.getIsbn() + "\n");
+            for (Book book : bookList.getBookList()) {
+                writer.write(book.getAuthor() + "\n");
+                writer.write(book.getTitle() + "\n");
+                writer.write(book.getGenre() + "\n");
+                writer.write(book.getDescription() + "\n");
+                writer.write(book.getYearOfPublishing() + "\n");
+                writer.write(book.getTag() + "\n");
+                writer.write(book.getRating() + "\n");
+                writer.write(book.getIsbn() + "\n");
                 writer.write("\n");
             }
         } catch (IOException e) {
             System.out.println("Error writing to file: ");
             e.printStackTrace();
+        }
+    }
+
+    public static void writeUsersToFile(UserList userList,String fileName){
+        String filePath = System.getProperty("user.dir") + File.separator + fileName;
+
+        try (FileWriter writer = new FileWriter(filePath)) {
+            for (User user : userList.getUserList()) {
+                writer.write(user.getUsername() + "\n");
+                writer.write(user.getPassword() + "\n");
+                writer.write(user.isAdmin() + "\n");
+                writer.write("\n");
+            }
+        } catch (IOException exception) {
+            System.out.println("Error writing to file: ");
+            exception.printStackTrace();
         }
     }
 }
