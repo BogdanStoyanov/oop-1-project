@@ -132,11 +132,15 @@ public class BookList {
                 book.setRating(Double.parseDouble(line = reader.readLine()));
                 book.setIsbn(line = reader.readLine());
                 line = reader.readLine();
+                bookList.add(book);
             }
         } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
 
+    public void clear(){
+        bookList.clear();
+    }
 
 }

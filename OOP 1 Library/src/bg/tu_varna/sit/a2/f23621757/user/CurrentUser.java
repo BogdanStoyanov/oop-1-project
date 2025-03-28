@@ -2,13 +2,16 @@ package bg.tu_varna.sit.a2.f23621757.user;
 
 public class CurrentUser {
     private  boolean hasOpenedFile;
-    private  boolean hasLoggedIn;
     private String currentFileName;
+    private  boolean hasLoggedIn;
+    private boolean isAdmin;
 
-    public CurrentUser(boolean hasOpenedFile, boolean hasLoggedIn, String currentFileName) {
+
+    public CurrentUser(boolean hasOpenedFile, String currentFileName, boolean hasLoggedIn, boolean isAdmin) {
         this.hasOpenedFile = hasOpenedFile;
-        this.hasLoggedIn = hasLoggedIn;
         this.currentFileName = currentFileName;
+        this.hasLoggedIn = hasLoggedIn;
+        this.isAdmin = isAdmin;
     }
 
     public boolean isHasOpenedFile() {
@@ -33,5 +36,13 @@ public class CurrentUser {
 
     public void setCurrentFileName(String currentFileName) {
         this.currentFileName = currentFileName;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
