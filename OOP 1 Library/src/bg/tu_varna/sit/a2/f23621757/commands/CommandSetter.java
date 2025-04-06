@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CommandSetter {
-    public static Map<String,Runnable> setCommands(Scanner scanner, CurrentUser currentUser, BookList bookList, UserList userList){
+    public static Map<String,Runnable> setCommands(Scanner scanner, CurrentUser currentUser, BookList bookList, UserList userList,String userFile){
         Map<String, Runnable> commands = new HashMap<>();
 
         commands.put("open", () -> {
@@ -71,7 +71,9 @@ public class CommandSetter {
         });
 
         commands.put("login",()->{
- 
+            System.out.println("Please enter a username: ");
+            String username = scanner.next();
+            System.out.println("Please enter a username: ");
         });
 
         return commands;

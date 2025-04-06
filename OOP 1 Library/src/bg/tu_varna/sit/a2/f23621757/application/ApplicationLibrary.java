@@ -3,6 +3,7 @@ package bg.tu_varna.sit.a2.f23621757.application;
 import bg.tu_varna.sit.a2.f23621757.book.BookList;
 import bg.tu_varna.sit.a2.f23621757.commands.CommandSetter;
 import bg.tu_varna.sit.a2.f23621757.file.FileCreator;
+import bg.tu_varna.sit.a2.f23621757.file.WriterToFile;
 import bg.tu_varna.sit.a2.f23621757.user.CurrentUser;
 import bg.tu_varna.sit.a2.f23621757.printer.ConsolePrinter;
 import bg.tu_varna.sit.a2.f23621757.user.UserList;
@@ -19,8 +20,12 @@ public class ApplicationLibrary {
         CurrentUser currentUser = new CurrentUser(false, "", false, false);
         BookList bookList = new BookList();
         UserList userList = new UserList();
+        userList.add("admin","i<2Java",true);
+        String userFile="user.txt";
+        WriterToFile.writeUsersToFile(userList,userFile);
 
-        Map<String, Runnable> commands = CommandSetter.setCommands(scanner, currentUser, bookList, userList);
+
+        Map<String, Runnable> commands = CommandSetter.setCommands(scanner, currentUser, bookList, userList,userFile);
 
     }
 
