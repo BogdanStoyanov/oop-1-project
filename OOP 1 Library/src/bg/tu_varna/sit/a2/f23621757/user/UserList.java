@@ -34,6 +34,18 @@ public class UserList {
         }
     }
 
+    public void logIn(String username, String password, CurrentUser currentUser) {
+        for (User user : userList) {
+            if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
+                System.out.println("Welcome " + username);
+                currentUser.setHasLoggedIn(true);
+                currentUser.setAdmin(user.isAdmin());
+                return;
+            }
+        }
+        System.out.println("Incorrect username or password");
+    }
+
     public void readFromFile(String fileName) {
         String filePath = System.getProperty("user.dir") + File.separator + fileName;
 

@@ -4,6 +4,7 @@ import bg.tu_varna.sit.a2.f23621757.book.BookList;
 import bg.tu_varna.sit.a2.f23621757.file.FileCreator;
 import bg.tu_varna.sit.a2.f23621757.file.WriterToFile;
 import bg.tu_varna.sit.a2.f23621757.user.CurrentUser;
+import bg.tu_varna.sit.a2.f23621757.user.User;
 import bg.tu_varna.sit.a2.f23621757.user.UserList;
 
 import java.io.File;
@@ -70,11 +71,35 @@ public class CommandSetter {
             System.out.println("users remove <user>                                        removes a user");
         });
 
-        commands.put("login",()->{
+        commands.put("login", () -> {
+            if (currentUser.isHasLoggedIn()) {
+                System.out.println("You are already logged in.");
+                return;
+            }
+
             System.out.println("Please enter a username: ");
             String username = scanner.next();
-            System.out.println("Please enter a username: ");
+            System.out.println("Please enter a password: ");
+            String password = scanner.next();
+
+            userList.logIn(username,password,currentUser);
         });
+
+        commands.put("logout",()->{
+            if (!currentUser.isHasLoggedIn()) {
+                System.out.println("You are not logged in.");
+                return;
+            }
+
+            currentUser.setHasLoggedIn(false);
+            currentUser.setAdmin(false);
+            System.out.println("You successfully logged out.");
+        });
+
+        commands.put("exit",()->{
+            System.out.println("Exiting the program.");
+        });
+        
 
         return commands;
     }

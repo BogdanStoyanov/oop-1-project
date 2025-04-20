@@ -24,9 +24,16 @@ public class ApplicationLibrary {
         String userFile="user.txt";
         WriterToFile.writeUsersToFile(userList,userFile);
 
-
         Map<String, Runnable> commands = CommandSetter.setCommands(scanner, currentUser, bookList, userList,userFile);
-
+        String currentCommand;
+        do {
+            currentCommand = scanner.next();
+            if (commands.containsKey(currentCommand)) {
+                commands.get(currentCommand).run();
+            } else {
+                System.out.println("Unknown command.");
+            }
+        } while (!currentCommand.equals("exit"));
     }
 
 }
