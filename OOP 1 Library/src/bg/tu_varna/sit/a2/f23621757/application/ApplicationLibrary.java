@@ -31,7 +31,7 @@ public class ApplicationLibrary {
             if (commands.containsKey(currentCommand)) {
                 commands.get(currentCommand).run();
             } else {
-                System.out.println("Unknown command.");
+                ConsolePrinter.unknownCommand();
             }
         } while (!currentCommand.equals("exit"));
     }

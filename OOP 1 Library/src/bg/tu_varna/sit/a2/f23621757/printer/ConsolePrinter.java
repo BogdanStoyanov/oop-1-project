@@ -12,4 +12,8 @@ public class ConsolePrinter {
     public static void askForAdmin() {
         System.out.println("You need to be an admin to use this command!");
     }
+
+    public static void unknownCommand(){
+        System.out.println("Unknown command.");
+    }
 }

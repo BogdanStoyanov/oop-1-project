@@ -58,12 +58,13 @@ public class BookList {
             System.out.println(item.getAuthor());
             System.out.println(item.getGenre());
             System.out.println(item.getIsbn());
+            System.out.println("***********************************************************");
         }
     }
 
     public void info(String isbn) {
         for (Book item : bookList) {
-            if (item.getTitle().equals(isbn)) {
+            if (item.getIsbn().equals(isbn)) {
                 System.out.println(item.getTitle());
                 System.out.println(item.getAuthor());
                 System.out.println(item.getGenre());
@@ -72,9 +73,11 @@ public class BookList {
                 System.out.println(item.getTag());
                 System.out.println(item.getRating());
                 System.out.println(item.getIsbn());
-                break;
+                return;
             }
         }
+
+        System.out.println("book with isbn: "+isbn+" not found.");
     }
 
     public void find(String option, String search) {

@@ -3,6 +3,7 @@ package bg.tu_varna.sit.a2.f23621757.commands;
 import bg.tu_varna.sit.a2.f23621757.book.BookList;
 import bg.tu_varna.sit.a2.f23621757.file.FileCreator;
 import bg.tu_varna.sit.a2.f23621757.file.WriterToFile;
+import bg.tu_varna.sit.a2.f23621757.printer.ConsolePrinter;
 import bg.tu_varna.sit.a2.f23621757.user.CurrentUser;
 import bg.tu_varna.sit.a2.f23621757.user.User;
 import bg.tu_varna.sit.a2.f23621757.user.UserList;
@@ -13,7 +14,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CommandSetter {
-    public static Map<String,Runnable> setCommands(Scanner scanner, CurrentUser currentUser, BookList bookList, UserList userList,String userFile){
+    public static Map<String,Runnable> setCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
+                                                   UserList userList,String userFile){
         Map<String, Runnable> commands = new HashMap<>();
 
         commands.put("open", () -> {
@@ -66,7 +68,7 @@ public class CommandSetter {
             System.out.println("books find [title, author, tag] <search>                   finds a book by: title, author or tag");
             System.out.println("books sort [title, author, year, rating] [asc | desc]      sorts by a criteria in ascending or descending order");
             System.out.println("books add                                                  adds a book");
-            System.out.println("books remove                                               removes a book");
+            System.out.println("books remove <isbn>                                               removes a book");
             System.out.println("users add <user> <password>                                adds a user");
             System.out.println("users remove <user>                                        removes a user");
         });
@@ -99,7 +101,22 @@ public class CommandSetter {
         commands.put("exit",()->{
             System.out.println("Exiting the program.");
         });
-        
+
+        commands.put("books",()->{
+            String currentCommand;
+            currentCommand = scanner.next();
+
+            Map<String,Runnable> bookCommands = BookCommandSetter.setBookCommands(scanner,currentUser,bookList,userList,userFile);
+            if (bookCommands.containsKey(currentCommand)) {
+                bookCommands.get(currentCommand).run();
+            } else {
+                ConsolePrinter.unknownCommand();
+            }
+        });
+
+        commands.put("users",()->{
+
+        });
 
         return commands;
     }
