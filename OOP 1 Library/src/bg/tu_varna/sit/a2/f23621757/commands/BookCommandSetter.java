@@ -77,7 +77,6 @@ public class BookCommandSetter {
             bookList.remove(isbn);
         });
 
-
         return bookCommands;
     }
 }

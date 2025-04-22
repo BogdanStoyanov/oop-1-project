@@ -23,13 +23,15 @@ public class UserList {
     public void add(String username, String password, boolean isAdmin) {
         User user = new User(username, password, isAdmin);
         userList.add(user);
+        System.out.println();
     }
 
     public void remove(String userName) {
         for (User user : userList) {
             if (user.getUsername().equals(userName)) {
                 userList.remove(user);
-                break;
+                System.out.println("Successfully removed "+userName+"!");
+                return;
             }
         }
     }
@@ -37,13 +39,13 @@ public class UserList {
     public void logIn(String username, String password, CurrentUser currentUser) {
         for (User user : userList) {
             if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-                System.out.println("Welcome " + username);
+                System.out.println("Welcome " + username+"!");
                 currentUser.setHasLoggedIn(true);
                 currentUser.setAdmin(user.isAdmin());
                 return;
             }
         }
-        System.out.println("Incorrect username or password");
+        System.out.println("Incorrect username or password!");
     }
 
     public void readFromFile(String fileName) {
@@ -53,10 +55,10 @@ public class UserList {
             String line;
             while ((line = reader.readLine()) != null) {
                 User user = new User();
-                user.setUsername(line = reader.readLine());
+                user.setUsername(line);
                 user.setPassword(line = reader.readLine());
                 user.setAdmin(Boolean.parseBoolean(line = reader.readLine()));
-                line = reader.readLine();
+                userList.add(user);
             }
         } catch (IOException exception) {
             exception.printStackTrace();

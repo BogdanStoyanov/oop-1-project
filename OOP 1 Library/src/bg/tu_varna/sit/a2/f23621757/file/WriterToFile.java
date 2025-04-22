@@ -24,7 +24,7 @@ public class WriterToFile {
                 writer.write(book.getTag() + "\n");
                 writer.write(book.getRating() + "\n");
                 writer.write(book.getIsbn() + "\n");
-                writer.write("\n");
+
             }
         } catch (IOException e) {
             System.out.println("Error writing to file: ");
@@ -40,7 +40,6 @@ public class WriterToFile {
                 writer.write(user.getUsername() + "\n");
                 writer.write(user.getPassword() + "\n");
                 writer.write(user.isAdmin() + "\n");
-                writer.write("\n");
             }
         } catch (IOException exception) {
             System.out.println("Error writing to file: ");

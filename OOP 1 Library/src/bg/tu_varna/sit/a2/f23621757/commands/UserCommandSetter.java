@@ -29,6 +29,7 @@ public class UserCommandSetter {
             password = scanner.next();
             userList.add(username,password,false);
             WriterToFile.writeUsersToFile(userList,userFile);
+            System.out.println("Successfully added a user!");
         });
 
         userCommands.put("remove", () -> {
@@ -40,12 +41,11 @@ public class UserCommandSetter {
                 ConsolePrinter.askForAdmin();
             }
 
-            String username,password;
+            String username;
             username = scanner.next();
             userList.remove(username);
             WriterToFile.writeUsersToFile(userList,userFile);
         });
-
 
         return userCommands;
     }

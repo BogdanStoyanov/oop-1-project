@@ -38,8 +38,8 @@ public class BookList {
         newBook.setRating(Double.parseDouble(scanner.nextLine()));
         System.out.println("ISBN: ");
         newBook.setIsbn(scanner.nextLine());
-
         bookList.add(newBook);
+        System.out.println("Successfully added a book!");
     }
 
     public void remove(String isbn)
@@ -47,9 +47,11 @@ public class BookList {
         for(Book book:bookList){
             if(book.getIsbn().equals(isbn)){
                 bookList.remove(book);
+                System.out.println("Successfully removed a book!");
                 break;
             }
         }
+        System.out.println("Book with isbn: "+isbn+" not found!");
     }
 
     public void all() {
@@ -77,7 +79,7 @@ public class BookList {
             }
         }
 
-        System.out.println("book with isbn: "+isbn+" not found.");
+        System.out.println("Book with isbn: "+isbn+" not found!");
     }
 
     public void find(String option, String search) {
@@ -89,7 +91,7 @@ public class BookList {
                         System.out.println(book.getAuthor());
                         System.out.println(book.getGenre());
                         System.out.println(book.getIsbn());
-                        break;
+                        return;
                     }
                     break;
                 }
@@ -100,7 +102,7 @@ public class BookList {
                         System.out.println(book.getAuthor());
                         System.out.println(book.getGenre());
                         System.out.println(book.getIsbn());
-                        break;
+                        return;
                     }
                     break;
                 }
@@ -111,12 +113,13 @@ public class BookList {
                         System.out.println(book.getAuthor());
                         System.out.println(book.getGenre());
                         System.out.println(book.getIsbn());
-                        break;
+                        return;
                     }
                     break;
                 }
             }
         }
+        System.out.println("Book not found!");
     }
 
     public void readFromFile(String fileName) {
@@ -126,7 +129,7 @@ public class BookList {
             String line;
             while ((line = reader.readLine()) != null) {
                 Book book = new Book();
-                book.setAuthor(line = reader.readLine());
+                book.setAuthor(line);
                 book.setTitle(line = reader.readLine());
                 book.setGenre(line = reader.readLine());
                 book.setDescription(line = reader.readLine());
@@ -134,7 +137,6 @@ public class BookList {
                 book.setTag(line = reader.readLine());
                 book.setRating(Double.parseDouble(line = reader.readLine()));
                 book.setIsbn(line = reader.readLine());
-                line = reader.readLine();
                 bookList.add(book);
             }
         } catch (IOException exception) {

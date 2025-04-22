@@ -5,7 +5,6 @@ import bg.tu_varna.sit.a2.f23621757.file.FileCreator;
 import bg.tu_varna.sit.a2.f23621757.file.WriterToFile;
 import bg.tu_varna.sit.a2.f23621757.printer.ConsolePrinter;
 import bg.tu_varna.sit.a2.f23621757.user.CurrentUser;
-import bg.tu_varna.sit.a2.f23621757.user.User;
 import bg.tu_varna.sit.a2.f23621757.user.UserList;
 
 import java.io.File;
@@ -19,6 +18,11 @@ public class CommandSetter {
         Map<String, Runnable> commands = new HashMap<>();
 
         commands.put("open", () -> {
+            if(currentUser.isHasOpenedFile()){
+                System.out.println("You have already opened a file!");
+                return;
+            }
+
             String fileName;
             fileName = scanner.next();
             String filePath = System.getProperty("user.dir") + File.separator + fileName;
@@ -31,15 +35,13 @@ public class CommandSetter {
             }
             currentUser.setHasOpenedFile(true);
             currentUser.setCurrentFileName(fileName);
-            System.out.println("Successfully opened " + fileName);
         });
 
         commands.put("close", () -> {
-            System.out.println("Successfully closed " + currentUser.getCurrentFileName());
+            System.out.println("Successfully closed " + currentUser.getCurrentFileName()+"!");
             currentUser.setHasOpenedFile(false);
             currentUser.setCurrentFileName("");
             bookList.clear();
-
         });
 
         commands.put("save", () -> {
@@ -51,7 +53,7 @@ public class CommandSetter {
             String fileName;
             fileName = scanner.next();
             WriterToFile.writeBooksToFile(bookList, fileName);
-            System.out.println("Successfully saved " + fileName);
+            System.out.println("Successfully saved another" + fileName+"!");
         });
 
         commands.put("help",()->{
@@ -68,7 +70,7 @@ public class CommandSetter {
             System.out.println("books find [title, author, tag] <search>                   finds a book by: title, author or tag");
             System.out.println("books sort [title, author, year, rating] [asc | desc]      sorts by a criteria in ascending or descending order");
             System.out.println("books add                                                  adds a book");
-            System.out.println("books remove <isbn>                                               removes a book");
+            System.out.println("books remove <isbn>                                        removes a book");
             System.out.println("users add <user> <password>                                adds a user");
             System.out.println("users remove <user>                                        removes a user");
         });
@@ -99,7 +101,7 @@ public class CommandSetter {
         });
 
         commands.put("exit",()->{
-            System.out.println("Exiting the program.");
+            System.out.println("Exiting the program...");
         });
 
         commands.put("books",()->{
@@ -115,7 +117,15 @@ public class CommandSetter {
         });
 
         commands.put("users",()->{
+            String currentCommand;
+            currentCommand = scanner.next();
 
+            Map<String,Runnable> userCommands = UserCommandSetter.setUserCommands(scanner,currentUser,bookList,userList,userFile);
+            if (userCommands.containsKey(currentCommand)) {
+                userCommands.get(currentCommand).run();
+            } else {
+                ConsolePrinter.unknownCommand();
+            }
         });
 
         return commands;

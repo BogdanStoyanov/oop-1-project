@@ -14,6 +14,6 @@ public class ConsolePrinter {
     }
 
     public static void unknownCommand(){
-        System.out.println("Unknown command.");
+        System.out.println("Unknown command!");
     }
 }

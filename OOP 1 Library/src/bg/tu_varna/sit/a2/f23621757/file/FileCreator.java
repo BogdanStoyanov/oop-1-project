@@ -6,8 +6,10 @@ import java.io.IOException;
 public class FileCreator {
     public static void createFile(File file) {
         try {
-            if(file.createNewFile()){
-                System.out.println("Successfully opened "+file.getName());
+            if (file.createNewFile()) {
+                System.out.println("Successfully opened " + file.getName());
+            } else {
+                System.out.println("Failed to open " + file.getName());
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
