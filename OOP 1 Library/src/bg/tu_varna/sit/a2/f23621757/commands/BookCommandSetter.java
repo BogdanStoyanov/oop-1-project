@@ -19,6 +19,10 @@ public class BookCommandSetter {
                 ConsolePrinter.askForUser();
                 return;
             }
+            if(!currentUser.isHasOpenedFile()){
+                ConsolePrinter.askForFile();
+                return;
+            }
             bookList.all();
         });
 

@@ -7,9 +7,9 @@ public class FileCreator {
     public static void createFile(File file) {
         try {
             if (file.createNewFile()) {
-                System.out.println("Successfully opened " + file.getName());
+                System.out.println("Successfully opened " + file.getName()+"\n");
             } else {
-                System.out.println("Failed to open " + file.getName());
+                System.out.println("Failed to open " + file.getName()+"\n");
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");

@@ -2,7 +2,6 @@ package bg.tu_varna.sit.a2.f23621757.application;
 
 import bg.tu_varna.sit.a2.f23621757.book.BookList;
 import bg.tu_varna.sit.a2.f23621757.commands.CommandSetter;
-import bg.tu_varna.sit.a2.f23621757.file.WriterToFile;
 import bg.tu_varna.sit.a2.f23621757.user.CurrentUser;
 import bg.tu_varna.sit.a2.f23621757.printer.ConsolePrinter;
 import bg.tu_varna.sit.a2.f23621757.user.UserList;
@@ -26,8 +25,6 @@ public class ApplicationLibrary {
             currentCommand = scanner.next();
             if (commands.containsKey(currentCommand)) {
                 commands.get(currentCommand).run();
-            } else {
-                ConsolePrinter.unknownCommand();
             }
         } while (!currentCommand.equals("exit"));
     }

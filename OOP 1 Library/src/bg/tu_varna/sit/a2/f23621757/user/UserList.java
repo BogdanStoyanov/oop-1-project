@@ -23,14 +23,14 @@ public class UserList {
     public void add(String username, String password, boolean isAdmin) {
         User user = new User(username, password, isAdmin);
         userList.add(user);
-        System.out.println();
+        System.out.println("Successfully added a book");
     }
 
     public void remove(String userName) {
         for (User user : userList) {
             if (user.getUsername().equals(userName)) {
                 userList.remove(user);
-                System.out.println("Successfully removed "+userName+"!");
+                System.out.println("Successfully removed "+userName+"!\n");
                 return;
             }
         }
@@ -42,10 +42,11 @@ public class UserList {
                 System.out.println("Welcome " + username+"!");
                 currentUser.setHasLoggedIn(true);
                 currentUser.setAdmin(user.isAdmin());
+                System.out.println("You successfully logged in!\n");
                 return;
             }
         }
-        System.out.println("Incorrect username or password!");
+        System.out.println("Incorrect username or password!\n");
     }
 
     public void readFromFile(String fileName) {

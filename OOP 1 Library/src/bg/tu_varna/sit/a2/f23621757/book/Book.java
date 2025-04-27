@@ -12,19 +12,10 @@ public class Book {
     private double rating;
     private String isbn;
 
-    public Book(String author, String title, String genre, String description, int yearOfPublishing, String tag, double rating, String isbn) {
-        this.author = author;
-        this.title = title;
-        this.genre = genre;
-        this.description = description;
-        this.yearOfPublishing = yearOfPublishing;
-        this.tag = tag;
-        this.rating = rating;
-        this.isbn = isbn;
-    }
-    public Book (){
+    public Book(){
 
     }
+    
     public String getAuthor() {
         return author;
     }

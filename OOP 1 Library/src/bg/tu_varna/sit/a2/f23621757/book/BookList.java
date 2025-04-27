@@ -39,7 +39,7 @@ public class BookList {
         System.out.println("ISBN: ");
         newBook.setIsbn(scanner.nextLine());
         bookList.add(newBook);
-        System.out.println("Successfully added a book!");
+        System.out.println("Successfully added a book!\n");
     }
 
     public void remove(String isbn)
@@ -47,11 +47,11 @@ public class BookList {
         for(Book book:bookList){
             if(book.getIsbn().equals(isbn)){
                 bookList.remove(book);
-                System.out.println("Successfully removed a book!");
+                System.out.println("Successfully removed a book!\n");
                 break;
             }
         }
-        System.out.println("Book with isbn: "+isbn+" not found!");
+        System.out.println("Book with isbn: "+isbn+" not found!\n");
     }
 
     public void all() {
@@ -62,6 +62,7 @@ public class BookList {
             System.out.println(item.getIsbn());
             System.out.println("***********************************************************");
         }
+        System.out.println();
     }
 
     public void info(String isbn) {
@@ -75,11 +76,12 @@ public class BookList {
                 System.out.println(item.getTag());
                 System.out.println(item.getRating());
                 System.out.println(item.getIsbn());
+                System.out.println();
                 return;
             }
         }
 
-        System.out.println("Book with isbn: "+isbn+" not found!");
+        System.out.println("Book with isbn: "+isbn+" not found!\n");
     }
 
     public void find(String option, String search) {
@@ -91,6 +93,7 @@ public class BookList {
                         System.out.println(book.getAuthor());
                         System.out.println(book.getGenre());
                         System.out.println(book.getIsbn());
+                        System.out.println();
                         return;
                     }
                     break;
@@ -102,6 +105,7 @@ public class BookList {
                         System.out.println(book.getAuthor());
                         System.out.println(book.getGenre());
                         System.out.println(book.getIsbn());
+                        System.out.println();
                         return;
                     }
                     break;
@@ -113,13 +117,14 @@ public class BookList {
                         System.out.println(book.getAuthor());
                         System.out.println(book.getGenre());
                         System.out.println(book.getIsbn());
+                        System.out.println();
                         return;
                     }
                     break;
                 }
             }
         }
-        System.out.println("Book not found!");
+        System.out.println("Book not found!\n");
     }
 
     public void readFromFile(String fileName) {

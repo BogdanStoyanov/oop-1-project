@@ -19,7 +19,7 @@ public class CommandSetter {
 
         commands.put("open", () -> {
             if(currentUser.isHasOpenedFile()){
-                System.out.println("You have already opened a file!");
+                System.out.println("You have already opened a new file!\n");
                 return;
             }
 
@@ -30,6 +30,7 @@ public class CommandSetter {
             File file = new File(filePath);
             if (file.exists()) {
                 bookList.readFromFile(fileName);
+                System.out.println("Successfully opened " + file.getName()+"\n");
             } else {
                 FileCreator.createFile(file);
             }
@@ -38,46 +39,62 @@ public class CommandSetter {
         });
 
         commands.put("close", () -> {
-            System.out.println("Successfully closed " + currentUser.getCurrentFileName()+"!");
+            if(!currentUser.isHasOpenedFile()){
+                ConsolePrinter.askForFile();
+                return;
+            }
+
+            System.out.println("Successfully closed " + currentUser.getCurrentFileName()+"!\n");
             currentUser.setHasOpenedFile(false);
             currentUser.setCurrentFileName("");
             bookList.clear();
         });
 
         commands.put("save", () -> {
+            if(!currentUser.isHasOpenedFile()){
+                ConsolePrinter.askForFile();
+                return;
+            }
+
             WriterToFile.writeBooksToFile(bookList, currentUser.getCurrentFileName());
-            System.out.println("Successfully saved " + currentUser.getCurrentFileName());
+            System.out.println("Successfully saved " + currentUser.getCurrentFileName()+"\n");
         });
 
         commands.put("saveas", () -> {
+            if(!currentUser.isHasOpenedFile()){
+                ConsolePrinter.askForFile();
+                return;
+            }
+
             String fileName;
             fileName = scanner.next();
             WriterToFile.writeBooksToFile(bookList, fileName);
-            System.out.println("Successfully saved another" + fileName+"!");
+            System.out.println("Successfully saved another " + fileName+"!\n");
         });
 
         commands.put("help",()->{
-            System.out.println("open <file>                                                opens а file");
-            System.out.println("close                                                      closes currently opened file");
-            System.out.println("save                                                       saves the currently open file");
-            System.out.println("saveas <file>                                              saves the currently open file in <file>");
-            System.out.println("help                                                       prints this information");
-            System.out.println("login                                                      log into an account");
-            System.out.println("logout                                                     log out of an account");
-            System.out.println("exit                                                       exists the program");
-            System.out.println("books all                                                  prints all books");
-            System.out.println("books info <isbn_value>                                    prints detailed information of a book with <isbn_value>");
-            System.out.println("books find [title, author, tag] <search>                   finds a book by: title, author or tag");
-            System.out.println("books sort [title, author, year, rating] [asc | desc]      sorts by a criteria in ascending or descending order");
-            System.out.println("books add                                                  adds a book");
-            System.out.println("books remove <isbn>                                        removes a book");
-            System.out.println("users add <user> <password>                                adds a user");
-            System.out.println("users remove <user>                                        removes a user");
+            System.out.println("open <file>                                                        opens а file");
+            System.out.println("close                                                              closes currently opened file");
+            System.out.println("save                                                               saves the currently open file");
+            System.out.println("saveas <file>                                                      saves the currently open file in <file>");
+            System.out.println("help                                                               prints this information");
+            System.out.println("login                                                              log into an account");
+            System.out.println("logout (account)                                                   log out of an account");
+            System.out.println("exit                                                               exists the program");
+            System.out.println("books all (account)                                                prints all books");
+            System.out.println("books info <isbn_value> (account)                                  prints detailed information of a book with <isbn_value>");
+            System.out.println("books find [title, author, tag] <search> (account)                 finds a book by: title, author or tag");
+            System.out.println("books sort [title, author, year, rating] [asc | desc] (account)    sorts by a criteria in ascending or descending order");
+            System.out.println("books add (account, admin)                                         adds a book");
+            System.out.println("books remove <isbn> (account, admin)                               removes a book");
+            System.out.println("users add <user> <password> (account, admin)                       adds a user");
+            System.out.println("users remove <user> (account, admin)                               removes a user");
+            System.out.println();
         });
 
         commands.put("login", () -> {
             if (currentUser.isHasLoggedIn()) {
-                System.out.println("You are already logged in.");
+                System.out.println("You are already logged in.\n");
                 return;
             }
 
@@ -91,17 +108,17 @@ public class CommandSetter {
 
         commands.put("logout",()->{
             if (!currentUser.isHasLoggedIn()) {
-                System.out.println("You are not logged in.");
+                System.out.println("You are not logged in.\n");
                 return;
             }
 
             currentUser.setHasLoggedIn(false);
             currentUser.setAdmin(false);
-            System.out.println("You successfully logged out.");
+            System.out.println("You successfully logged out.\n");
         });
 
         commands.put("exit",()->{
-            System.out.println("Exiting the program...");
+            System.out.println("Exiting the program...\n");
         });
 
         commands.put("books",()->{
