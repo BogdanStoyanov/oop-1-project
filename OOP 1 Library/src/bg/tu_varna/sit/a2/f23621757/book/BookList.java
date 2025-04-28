@@ -1,9 +1,6 @@
 package bg.tu_varna.sit.a2.f23621757.book;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -128,9 +125,15 @@ public class BookList {
     }
 
     public void readFromFile(String fileName) {
-        String filePath = System.getProperty("user.dir") + File.separator + fileName;
+        String projectRoot = System.getProperty("user.dir");
+        File file = new File(projectRoot, "myFiles/" + fileName);
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        if (!file.exists()) {
+            System.out.println("USer file doesn't exist");
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 Book book = new Book();
@@ -149,7 +152,7 @@ public class BookList {
         }
     }
 
-    public void clear(){
+    public void clear() {
         bookList.clear();
     }
 

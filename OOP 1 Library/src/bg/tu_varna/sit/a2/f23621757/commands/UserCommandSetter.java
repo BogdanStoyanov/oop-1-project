@@ -16,23 +16,27 @@ public class UserCommandSetter {
         Map<String, Runnable> userCommands = new HashMap<>();
 
         userCommands.put("add", () -> {
-            if(!currentUser.isHasLoggedIn()){
-                ConsolePrinter.askForUser();
-                return;
-            }
-            if(!currentUser.isAdmin()){
-                ConsolePrinter.askForAdmin();
-            }
-
             String username,password;
             username = scanner.next();
             password = scanner.next();
+
+            if(!currentUser.isHasLoggedIn()){
+                ConsolePrinter.askForUser();
+                return;
+            }
+            if(!currentUser.isAdmin()){
+                ConsolePrinter.askForAdmin();
+                return;
+            }
+
             userList.add(username,password,false);
             WriterToFile.writeUsersToFile(userList,userFile);
-            System.out.println("Successfully added a user!");
+            System.out.println("Successfully added a user!\n");
         });
 
         userCommands.put("remove", () -> {
+            String username;
+            username = scanner.next();
             if(!currentUser.isHasLoggedIn()){
                 ConsolePrinter.askForUser();
                 return;
@@ -40,9 +44,6 @@ public class UserCommandSetter {
             if(!currentUser.isAdmin()){
                 ConsolePrinter.askForAdmin();
             }
-
-            String username;
-            username = scanner.next();
             userList.remove(username);
             WriterToFile.writeUsersToFile(userList,userFile);
         });

@@ -19,6 +19,8 @@ public class ApplicationLibrary {
         String userFile = "users.txt";
         userList.readFromFile(userFile);
 
+        System.out.println("finally!!!");
+
         Map<String, Runnable> commands = CommandSetter.setCommands(scanner, currentUser, bookList, userList, userFile);
         String currentCommand;
         do {

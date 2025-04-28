@@ -12,9 +12,10 @@ import java.io.IOException;
 
 public class WriterToFile {
     public static void writeBooksToFile(BookList bookList,String fileName) {
-        String filePath = System.getProperty("user.dir") + File.separator + fileName;
+        File directory = new File("myFiles");
+        File file = new File(directory,fileName);
 
-        try (FileWriter writer = new FileWriter(filePath)) {
+        try (FileWriter writer = new FileWriter(file)) {
             for (Book book : bookList.getBookList()) {
                 writer.write(book.getAuthor() + "\n");
                 writer.write(book.getTitle() + "\n");
@@ -24,7 +25,6 @@ public class WriterToFile {
                 writer.write(book.getTag() + "\n");
                 writer.write(book.getRating() + "\n");
                 writer.write(book.getIsbn() + "\n");
-
             }
         } catch (IOException e) {
             System.out.println("Error writing to file: ");
@@ -33,9 +33,10 @@ public class WriterToFile {
     }
 
     public static void writeUsersToFile(UserList userList,String fileName){
-        String filePath = System.getProperty("user.dir") + File.separator + fileName;
+        File directory = new File("myFiles");
+        File file = new File(directory,fileName);
 
-        try (FileWriter writer = new FileWriter(filePath)) {
+        try (FileWriter writer = new FileWriter(file)) {
             for (User user : userList.getUserList()) {
                 writer.write(user.getUsername() + "\n");
                 writer.write(user.getPassword() + "\n");

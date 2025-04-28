@@ -18,16 +18,16 @@ public class CommandSetter {
         Map<String, Runnable> commands = new HashMap<>();
 
         commands.put("open", () -> {
+            String fileName;
+            String projectRoot = System.getProperty("user.dir");
+            fileName = scanner.next();
+
             if(currentUser.isHasOpenedFile()){
                 System.out.println("You have already opened a new file!\n");
                 return;
             }
 
-            String fileName;
-            fileName = scanner.next();
-            String filePath = System.getProperty("user.dir") + File.separator + fileName;
-
-            File file = new File(filePath);
+            File file = new File(projectRoot,"myFiles/"+fileName);
             if (file.exists()) {
                 bookList.readFromFile(fileName);
                 System.out.println("Successfully opened " + file.getName()+"\n");
@@ -61,13 +61,14 @@ public class CommandSetter {
         });
 
         commands.put("saveas", () -> {
+            String fileName;
+            fileName = scanner.next();
+
             if(!currentUser.isHasOpenedFile()){
                 ConsolePrinter.askForFile();
                 return;
             }
 
-            String fileName;
-            fileName = scanner.next();
             WriterToFile.writeBooksToFile(bookList, fileName);
             System.out.println("Successfully saved another " + fileName+"!\n");
         });
