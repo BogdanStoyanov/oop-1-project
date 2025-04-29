@@ -7,6 +7,7 @@ import bg.tu_varna.sit.a2.f23621757.printer.ConsolePrinter;
 import bg.tu_varna.sit.a2.f23621757.user.CurrentUser;
 import bg.tu_varna.sit.a2.f23621757.user.UserList;
 
+import java.io.Console;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -74,7 +75,7 @@ public class CommandSetter {
         });
 
         commands.put("help",()->{
-            System.out.println("open <file>                                                        opens а file");
+            System.out.println("open <file>                                                        opens a file");
             System.out.println("close                                                              closes currently opened file");
             System.out.println("save                                                               saves the currently open file");
             System.out.println("saveas <file>                                                      saves the currently open file in <file>");
@@ -101,10 +102,16 @@ public class CommandSetter {
 
             System.out.println("Please enter a username: ");
             String username = scanner.next();
-            System.out.println("Please enter a password: ");
-            String password = scanner.next();
 
-            userList.logIn(username,password,currentUser);
+            Console console = System.console();
+            //https://stackoverflow.com/questions/8138411/masking-password-input-from-the-console-java
+            if (console == null) {
+                System.out.println("Couldn't get Console instance");
+            } else {
+                char [] password = console.readPassword("Please enter a password: ");
+                String myPassword = new String(password);
+                userList.logIn(username, myPassword, currentUser);
+            }
         });
 
         commands.put("logout",()->{
