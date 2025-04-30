@@ -31,9 +31,14 @@ public class BookCommandSetter {
                 ConsolePrinter.askForUser();
                 return;
             }
+            if (!currentUser.isHasOpenedFile()) {
+                ConsolePrinter.askForFile();
+                return;
+            }
             String option, search;
             option = scanner.next();
-            search = scanner.next();
+            search = scanner.nextLine();
+            search=search.trim();
             bookList.find(option, search);
         });
 
@@ -42,10 +47,14 @@ public class BookCommandSetter {
                 ConsolePrinter.askForUser();
                 return;
             }
-
+            if (!currentUser.isHasOpenedFile()) {
+                ConsolePrinter.askForFile();
+                return;
+            }
             String criteria = scanner.next();
             String order = scanner.next();
             bookList.insertionSort(criteria, order);
+            System.out.println("Books were sorted!\n");
         });
 
         bookCommands.put("info", () -> {
@@ -53,7 +62,10 @@ public class BookCommandSetter {
                 ConsolePrinter.askForUser();
                 return;
             }
-
+            if (!currentUser.isHasOpenedFile()) {
+                ConsolePrinter.askForFile();
+                return;
+            }
             String isbn;
             isbn = scanner.next();
             bookList.info(isbn);
@@ -66,6 +78,11 @@ public class BookCommandSetter {
             }
             if (!currentUser.isAdmin()) {
                 ConsolePrinter.askForAdmin();
+                return;
+            }
+            if (!currentUser.isHasOpenedFile()) {
+                ConsolePrinter.askForFile();
+                return;
             }
             bookList.add();
         });
@@ -77,6 +94,11 @@ public class BookCommandSetter {
             }
             if (!currentUser.isAdmin()) {
                 ConsolePrinter.askForAdmin();
+                return;
+            }
+            if (!currentUser.isHasOpenedFile()) {
+                ConsolePrinter.askForFile();
+                return;
             }
             String isbn;
             isbn = scanner.next();

@@ -16,7 +16,7 @@ public class ApplicationLibrary {
         CurrentUser currentUser = new CurrentUser(false, "", false, false);
         BookList bookList = new BookList();
         UserList userList = new UserList();
-        String userFile = "users.txt";
+        final String userFile = "users.txt";
         userList.readFromFile(userFile);
 
         Map<String, Runnable> commands = CommandSetter.setCommands(scanner, currentUser, bookList, userList, userFile);

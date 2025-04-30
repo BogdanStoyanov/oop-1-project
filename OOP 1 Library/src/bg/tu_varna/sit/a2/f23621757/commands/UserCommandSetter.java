@@ -28,6 +28,10 @@ public class UserCommandSetter {
                 ConsolePrinter.askForAdmin();
                 return;
             }
+            if(userList.checkForUsername(username)){
+                System.out.println("Username already exists!");
+                return;
+            }
 
             userList.add(username, password, false);
             WriterToFile.writeUsersToFile(userList, userFile);
@@ -43,6 +47,7 @@ public class UserCommandSetter {
             }
             if (!currentUser.isAdmin()) {
                 ConsolePrinter.askForAdmin();
+                return;
             }
             userList.remove(username);
             WriterToFile.writeUsersToFile(userList, userFile);

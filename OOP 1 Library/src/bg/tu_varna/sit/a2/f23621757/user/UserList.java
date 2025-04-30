@@ -22,6 +22,15 @@ public class UserList {
         userList.add(user);
     }
 
+    public boolean checkForUsername(String username) {
+        for (User user : userList) {
+            if (user.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void remove(String userName) {
         for (User user : userList) {
             if (user.getUsername().equals(userName)) {

@@ -100,7 +100,7 @@ public class CommandSetter {
                 return;
             }
 
-            System.out.println("Please enter a username: ");
+            System.out.print("Please enter a username: ");
             String username = scanner.next();
 
             Console console = System.console();

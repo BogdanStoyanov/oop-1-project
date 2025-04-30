@@ -19,21 +19,21 @@ public class BookList {
     public void add() {
         Book newBook = new Book();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Author: ");
+        System.out.print("Author: ");
         newBook.setAuthor(scanner.nextLine());
-        System.out.println("Title: ");
+        System.out.print("Title: ");
         newBook.setTitle(scanner.nextLine());
-        System.out.println("Genre: ");
+        System.out.print("Genre: ");
         newBook.setGenre(scanner.nextLine());
-        System.out.println("Description: ");
+        System.out.print("Description: ");
         newBook.setDescription(scanner.nextLine());
-        System.out.println("Year of publishing: ");
+        System.out.print("Year of publishing: ");
         newBook.setYearOfPublishing(Integer.parseInt(scanner.nextLine()));
-        System.out.println("Tag: ");
+        System.out.print("Tag: ");
         newBook.setTag(scanner.nextLine());
-        System.out.println("Rating: ");
+        System.out.print("Rating: ");
         newBook.setRating(Double.parseDouble(scanner.nextLine()));
-        System.out.println("ISBN: ");
+        System.out.print("ISBN: ");
         newBook.setIsbn(scanner.nextLine());
         bookList.add(newBook);
         System.out.println("Successfully added a book!\n");
@@ -44,7 +44,7 @@ public class BookList {
             if (book.getIsbn().equals(isbn)) {
                 bookList.remove(book);
                 System.out.println("Successfully removed a book!\n");
-                break;
+                return;
             }
         }
         System.out.println("Book with isbn: " + isbn + " not found!\n");
@@ -52,10 +52,10 @@ public class BookList {
 
     public void all() {
         for (Book item : bookList) {
-            System.out.println(item.getTitle());
-            System.out.println(item.getAuthor());
-            System.out.println(item.getGenre());
-            System.out.println(item.getIsbn());
+            System.out.println("Title: " + item.getTitle());
+            System.out.println("Author: " + item.getAuthor());
+            System.out.println("Genre: " + item.getGenre());
+            System.out.println("ISBN: " +item.getIsbn());
             System.out.println("***********************************************************");
         }
         System.out.println();
@@ -64,14 +64,14 @@ public class BookList {
     public void info(String isbn) {
         for (Book item : bookList) {
             if (item.getIsbn().equals(isbn)) {
-                System.out.println(item.getTitle());
-                System.out.println(item.getAuthor());
-                System.out.println(item.getGenre());
-                System.out.println(item.getDescription());
-                System.out.println(item.getYearOfPublishing());
-                System.out.println(item.getTag());
-                System.out.println(item.getRating());
-                System.out.println(item.getIsbn());
+                System.out.println("Title: " + item.getTitle());
+                System.out.println("Author: " + item.getAuthor());
+                System.out.println("Genre: " + item.getGenre());
+                System.out.println("Description: " + item.getDescription());
+                System.out.println("Year: " + item.getYearOfPublishing());
+                System.out.println("Tag: "+ item.getTag());
+                System.out.println("Rating: " + item.getRating());
+                System.out.println("ISBN: " + item.getIsbn());
                 System.out.println();
                 return;
             }
@@ -85,42 +85,39 @@ public class BookList {
             switch (option) {
                 case "title": {
                     if (book.getTitle().equalsIgnoreCase(search)) {
-                        System.out.println(book.getTitle());
-                        System.out.println(book.getAuthor());
-                        System.out.println(book.getGenre());
-                        System.out.println(book.getIsbn());
+                        System.out.println("Title: " + book.getTitle());
+                        System.out.println("Author: " + book.getAuthor());
+                        System.out.println("Genre: " + book.getGenre());
+                        System.out.println("ISBN: " + book.getIsbn());
+                        System.out.println("***********************************************************");
                         System.out.println();
-                        return;
                     }
                     break;
                 }
-
                 case "author": {
                     if (book.getAuthor().equalsIgnoreCase(search)) {
-                        System.out.println(book.getTitle());
-                        System.out.println(book.getAuthor());
-                        System.out.println(book.getGenre());
-                        System.out.println(book.getIsbn());
+                        System.out.println("Title: " + book.getTitle());
+                        System.out.println("Author: " + book.getAuthor());
+                        System.out.println("Genre: " + book.getGenre());
+                        System.out.println("ISBN: " + book.getIsbn());
+                        System.out.println("***********************************************************");
                         System.out.println();
-                        return;
                     }
                     break;
                 }
-
                 case "tag": {
                     if (book.getTag().equalsIgnoreCase(search)) {
-                        System.out.println(book.getTitle());
-                        System.out.println(book.getAuthor());
-                        System.out.println(book.getGenre());
-                        System.out.println(book.getIsbn());
+                        System.out.println("Title: " + book.getTitle());
+                        System.out.println("Author: " + book.getAuthor());
+                        System.out.println("Genre: " + book.getGenre());
+                        System.out.println("ISBN: " + book.getIsbn());
+                        System.out.println("***********************************************************");
                         System.out.println();
-                        return;
                     }
                     break;
                 }
             }
         }
-        System.out.println("Book not found!\n");
     }
 
     public void readFromFile(String fileName) {
@@ -128,7 +125,7 @@ public class BookList {
         File file = new File(projectRoot, "myFiles/" + fileName);
 
         if (!file.exists()) {
-            System.out.println("USer file doesn't exist");
+            System.out.println("User file doesn't exist");
             return;
         }
 
