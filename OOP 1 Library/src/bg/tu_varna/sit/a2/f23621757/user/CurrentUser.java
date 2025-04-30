@@ -1,9 +1,9 @@
 package bg.tu_varna.sit.a2.f23621757.user;
 
 public class CurrentUser {
-    private  boolean hasOpenedFile;
+    private boolean hasOpenedFile;
     private String currentFileName;
-    private  boolean hasLoggedIn;
+    private boolean hasLoggedIn;
     private boolean isAdmin;
 
 

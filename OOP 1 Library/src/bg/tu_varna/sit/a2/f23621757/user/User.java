@@ -13,7 +13,7 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    public User(){
+    public User() {
 
     }
 

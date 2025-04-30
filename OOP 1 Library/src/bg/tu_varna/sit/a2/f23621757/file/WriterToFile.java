@@ -11,9 +11,9 @@ import java.io.IOException;
 
 
 public class WriterToFile {
-    public static void writeBooksToFile(BookList bookList,String fileName) {
+    public static void writeBooksToFile(BookList bookList, String fileName) {
         File directory = new File("myFiles");
-        File file = new File(directory,fileName);
+        File file = new File(directory, fileName);
 
         try (FileWriter writer = new FileWriter(file)) {
             for (Book book : bookList.getBookList()) {
@@ -32,9 +32,9 @@ public class WriterToFile {
         }
     }
 
-    public static void writeUsersToFile(UserList userList,String fileName){
+    public static void writeUsersToFile(UserList userList, String fileName) {
         File directory = new File("myFiles");
-        File file = new File(directory,fileName);
+        File file = new File(directory, fileName);
 
         try (FileWriter writer = new FileWriter(file)) {
             for (User user : userList.getUserList()) {

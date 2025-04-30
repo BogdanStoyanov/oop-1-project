@@ -26,7 +26,7 @@ public class UserList {
         for (User user : userList) {
             if (user.getUsername().equals(userName)) {
                 userList.remove(user);
-                System.out.println("Successfully removed "+userName+"!\n");
+                System.out.println("Successfully removed " + userName + "!\n");
                 return;
             }
         }
@@ -35,7 +35,7 @@ public class UserList {
     public void logIn(String username, String password, CurrentUser currentUser) {
         for (User user : userList) {
             if (username.equals(user.getUsername()) && password.equals(user.getPassword())) {
-                System.out.println("Welcome " + username+"!");
+                System.out.println("Welcome " + username + "!");
                 currentUser.setHasLoggedIn(true);
                 currentUser.setAdmin(user.isAdmin());
                 System.out.println("You successfully logged in!\n");
@@ -47,9 +47,9 @@ public class UserList {
 
     public void readFromFile(String fileName) {
         String projectRoot = System.getProperty("user.dir");
-        File file = new File(projectRoot,"myFiles/"+fileName);
+        File file = new File(projectRoot, "myFiles/" + fileName);
 
-        if(!file.exists()){
+        if (!file.exists()) {
             System.out.println("USer file doesn't exist");
             return;
         }

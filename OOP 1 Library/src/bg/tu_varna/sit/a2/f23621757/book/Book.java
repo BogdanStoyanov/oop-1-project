@@ -12,10 +12,10 @@ public class Book {
     private double rating;
     private String isbn;
 
-    public Book(){
+    public Book() {
 
     }
-    
+
     public String getAuthor() {
         return author;
     }

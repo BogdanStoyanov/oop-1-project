@@ -14,8 +14,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CommandSetter {
-    public static Map<String,Runnable> setCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
-                                                   UserList userList,String userFile){
+    public static Map<String, Runnable> setCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
+                                                    UserList userList, String userFile) {
         Map<String, Runnable> commands = new HashMap<>();
 
         commands.put("open", () -> {
@@ -23,15 +23,15 @@ public class CommandSetter {
             String projectRoot = System.getProperty("user.dir");
             fileName = scanner.next();
 
-            if(currentUser.isHasOpenedFile()){
+            if (currentUser.isHasOpenedFile()) {
                 System.out.println("You have already opened a new file!\n");
                 return;
             }
 
-            File file = new File(projectRoot,"myFiles/"+fileName);
+            File file = new File(projectRoot, "myFiles/" + fileName);
             if (file.exists()) {
                 bookList.readFromFile(fileName);
-                System.out.println("Successfully opened " + file.getName()+"\n");
+                System.out.println("Successfully opened " + file.getName() + "\n");
             } else {
                 FileCreator.createFile(file);
             }
@@ -40,41 +40,41 @@ public class CommandSetter {
         });
 
         commands.put("close", () -> {
-            if(!currentUser.isHasOpenedFile()){
+            if (!currentUser.isHasOpenedFile()) {
                 ConsolePrinter.askForFile();
                 return;
             }
 
-            System.out.println("Successfully closed " + currentUser.getCurrentFileName()+"!\n");
+            System.out.println("Successfully closed " + currentUser.getCurrentFileName() + "!\n");
             currentUser.setHasOpenedFile(false);
             currentUser.setCurrentFileName("");
             bookList.clear();
         });
 
         commands.put("save", () -> {
-            if(!currentUser.isHasOpenedFile()){
+            if (!currentUser.isHasOpenedFile()) {
                 ConsolePrinter.askForFile();
                 return;
             }
 
             WriterToFile.writeBooksToFile(bookList, currentUser.getCurrentFileName());
-            System.out.println("Successfully saved " + currentUser.getCurrentFileName()+"\n");
+            System.out.println("Successfully saved " + currentUser.getCurrentFileName() + "\n");
         });
 
         commands.put("saveas", () -> {
             String fileName;
             fileName = scanner.next();
 
-            if(!currentUser.isHasOpenedFile()){
+            if (!currentUser.isHasOpenedFile()) {
                 ConsolePrinter.askForFile();
                 return;
             }
 
             WriterToFile.writeBooksToFile(bookList, fileName);
-            System.out.println("Successfully saved another " + fileName+"!\n");
+            System.out.println("Successfully saved another " + fileName + "!\n");
         });
 
-        commands.put("help",()->{
+        commands.put("help", () -> {
             System.out.println("open <file>                                                        opens a file");
             System.out.println("close                                                              closes currently opened file");
             System.out.println("save                                                               saves the currently open file");
@@ -108,13 +108,13 @@ public class CommandSetter {
             if (console == null) {
                 System.out.println("Couldn't get Console instance");
             } else {
-                char [] password = console.readPassword("Please enter a password: ");
+                char[] password = console.readPassword("Please enter a password: ");
                 String myPassword = new String(password);
                 userList.logIn(username, myPassword, currentUser);
             }
         });
 
-        commands.put("logout",()->{
+        commands.put("logout", () -> {
             if (!currentUser.isHasLoggedIn()) {
                 System.out.println("You are not logged in.\n");
                 return;
@@ -125,15 +125,15 @@ public class CommandSetter {
             System.out.println("You successfully logged out.\n");
         });
 
-        commands.put("exit",()->{
+        commands.put("exit", () -> {
             System.out.println("Exiting the program...\n");
         });
 
-        commands.put("books",()->{
+        commands.put("books", () -> {
             String currentCommand;
             currentCommand = scanner.next();
 
-            Map<String,Runnable> bookCommands = BookCommandSetter.setBookCommands(scanner,currentUser,bookList,userList,userFile);
+            Map<String, Runnable> bookCommands = BookCommandSetter.setBookCommands(scanner, currentUser, bookList, userList, userFile);
             if (bookCommands.containsKey(currentCommand)) {
                 bookCommands.get(currentCommand).run();
             } else {
@@ -141,11 +141,11 @@ public class CommandSetter {
             }
         });
 
-        commands.put("users",()->{
+        commands.put("users", () -> {
             String currentCommand;
             currentCommand = scanner.next();
 
-            Map<String,Runnable> userCommands = UserCommandSetter.setUserCommands(scanner,currentUser,bookList,userList,userFile);
+            Map<String, Runnable> userCommands = UserCommandSetter.setUserCommands(scanner, currentUser, bookList, userList, userFile);
             if (userCommands.containsKey(currentCommand)) {
                 userCommands.get(currentCommand).run();
             } else {

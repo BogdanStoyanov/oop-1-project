@@ -13,11 +13,11 @@ public class ConsolePrinter {
         System.out.println("You need to be an admin to use this command!\n");
     }
 
-    public static void unknownCommand(){
+    public static void unknownCommand() {
         System.out.println("Unknown command!\n");
     }
 
-    public static void askForFile(){
+    public static void askForFile() {
         System.out.println("You haven't opened a file!\n");
     }
 }

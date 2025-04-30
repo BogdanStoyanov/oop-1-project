@@ -16,7 +16,7 @@ public class BookList {
         return bookList;
     }
 
-    public void add(){
+    public void add() {
         Book newBook = new Book();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Author: ");
@@ -39,16 +39,15 @@ public class BookList {
         System.out.println("Successfully added a book!\n");
     }
 
-    public void remove(String isbn)
-    {
-        for(Book book:bookList){
-            if(book.getIsbn().equals(isbn)){
+    public void remove(String isbn) {
+        for (Book book : bookList) {
+            if (book.getIsbn().equals(isbn)) {
                 bookList.remove(book);
                 System.out.println("Successfully removed a book!\n");
                 break;
             }
         }
-        System.out.println("Book with isbn: "+isbn+" not found!\n");
+        System.out.println("Book with isbn: " + isbn + " not found!\n");
     }
 
     public void all() {
@@ -78,7 +77,7 @@ public class BookList {
             }
         }
 
-        System.out.println("Book with isbn: "+isbn+" not found!\n");
+        System.out.println("Book with isbn: " + isbn + " not found!\n");
     }
 
     public void find(String option, String search) {
@@ -154,6 +153,53 @@ public class BookList {
 
     public void clear() {
         bookList.clear();
+    }
+
+    //https://www.geeksforgeeks.org/insertion-sort-algorithm/
+    public void insertionSort(String criteria, String order) {
+        boolean reverse = false;
+        if (order.equals("asc")) {
+            reverse = false;
+        } else if (order.equals("desc")) {
+            reverse = true;
+        }
+
+        for (int i = 1; i < bookList.size(); i++) {
+            Book key = bookList.get(i);
+            int j = i - 1;
+
+            switch (criteria) {
+                case "title": {
+                    while (j >= 0 && ((bookList.get(j).getTitle().compareToIgnoreCase(key.getTitle()) > 0) ^ reverse)) {
+                        bookList.set(j + 1, bookList.get(j));
+                        j--;
+                    }
+                    break;
+                }
+                case "author": {
+                    while (j >= 0 && (bookList.get(j).getAuthor().compareToIgnoreCase(key.getAuthor()) > 0) ^ reverse) {
+                        bookList.set(j + 1, bookList.get(j));
+                        j--;
+                    }
+                    break;
+                }
+                case "year": {
+                    while (j >= 0 && (bookList.get(j).getYearOfPublishing() > key.getYearOfPublishing()) ^ reverse) {
+                        bookList.set(j + 1, bookList.get(j));
+                        j--;
+                    }
+                    break;
+                }
+                case "rating": {
+                    while (j >= 0 && (bookList.get(j).getRating() > key.getRating() ^ reverse)) {
+                        bookList.set(j + 1, bookList.get(j));
+                        j--;
+                    }
+                    break;
+                }
+            }
+            bookList.set(j + 1, key);
+        }
     }
 
 }

@@ -10,16 +10,16 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class BookCommandSetter {
-    public static Map<String,Runnable> setBookCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
-                                                   UserList userList, String userFile){
+    public static Map<String, Runnable> setBookCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
+                                                        UserList userList, String userFile) {
         Map<String, Runnable> bookCommands = new HashMap<>();
 
         bookCommands.put("all", () -> {
-            if(!currentUser.isHasLoggedIn()){
+            if (!currentUser.isHasLoggedIn()) {
                 ConsolePrinter.askForUser();
                 return;
             }
-            if(!currentUser.isHasOpenedFile()){
+            if (!currentUser.isHasOpenedFile()) {
                 ConsolePrinter.askForFile();
                 return;
             }
@@ -27,7 +27,7 @@ public class BookCommandSetter {
         });
 
         bookCommands.put("find", () -> {
-            if(!currentUser.isHasLoggedIn()){
+            if (!currentUser.isHasLoggedIn()) {
                 ConsolePrinter.askForUser();
                 return;
             }
@@ -38,16 +38,18 @@ public class BookCommandSetter {
         });
 
         bookCommands.put("sort", () -> {
-            if(!currentUser.isHasLoggedIn()){
+            if (!currentUser.isHasLoggedIn()) {
                 ConsolePrinter.askForUser();
                 return;
             }
 
-            //Да се направи
+            String criteria = scanner.next();
+            String order = scanner.next();
+            bookList.insertionSort(criteria, order);
         });
 
         bookCommands.put("info", () -> {
-            if(!currentUser.isHasLoggedIn()){
+            if (!currentUser.isHasLoggedIn()) {
                 ConsolePrinter.askForUser();
                 return;
             }
@@ -58,22 +60,22 @@ public class BookCommandSetter {
         });
 
         bookCommands.put("add", () -> {
-            if(!currentUser.isHasLoggedIn()){
+            if (!currentUser.isHasLoggedIn()) {
                 ConsolePrinter.askForUser();
                 return;
             }
-            if(!currentUser.isAdmin()){
+            if (!currentUser.isAdmin()) {
                 ConsolePrinter.askForAdmin();
             }
             bookList.add();
         });
 
         bookCommands.put("remove", () -> {
-            if(!currentUser.isHasLoggedIn()){
+            if (!currentUser.isHasLoggedIn()) {
                 ConsolePrinter.askForUser();
                 return;
             }
-            if(!currentUser.isAdmin()){
+            if (!currentUser.isAdmin()) {
                 ConsolePrinter.askForAdmin();
             }
             String isbn;

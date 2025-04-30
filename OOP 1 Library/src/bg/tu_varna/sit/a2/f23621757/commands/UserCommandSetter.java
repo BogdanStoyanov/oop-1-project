@@ -11,41 +11,41 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class UserCommandSetter {
-    public static Map<String,Runnable> setUserCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
-                                                       UserList userList, String userFile){
+    public static Map<String, Runnable> setUserCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
+                                                        UserList userList, String userFile) {
         Map<String, Runnable> userCommands = new HashMap<>();
 
         userCommands.put("add", () -> {
-            String username,password;
+            String username, password;
             username = scanner.next();
             password = scanner.next();
 
-            if(!currentUser.isHasLoggedIn()){
+            if (!currentUser.isHasLoggedIn()) {
                 ConsolePrinter.askForUser();
                 return;
             }
-            if(!currentUser.isAdmin()){
+            if (!currentUser.isAdmin()) {
                 ConsolePrinter.askForAdmin();
                 return;
             }
 
-            userList.add(username,password,false);
-            WriterToFile.writeUsersToFile(userList,userFile);
+            userList.add(username, password, false);
+            WriterToFile.writeUsersToFile(userList, userFile);
             System.out.println("Successfully added a user!\n");
         });
 
         userCommands.put("remove", () -> {
             String username;
             username = scanner.next();
-            if(!currentUser.isHasLoggedIn()){
+            if (!currentUser.isHasLoggedIn()) {
                 ConsolePrinter.askForUser();
                 return;
             }
-            if(!currentUser.isAdmin()){
+            if (!currentUser.isAdmin()) {
                 ConsolePrinter.askForAdmin();
             }
             userList.remove(username);
-            WriterToFile.writeUsersToFile(userList,userFile);
+            WriterToFile.writeUsersToFile(userList, userFile);
         });
 
         return userCommands;
