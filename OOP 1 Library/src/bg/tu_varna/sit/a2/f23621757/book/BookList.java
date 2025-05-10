@@ -5,17 +5,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Класът {@code BookList} представлява списък от книги и предоставя основни операции
+ * за добавяне, търсене, премахване, сортиране и зареждане на книги от файл.
+ */
 public class BookList {
     private List<Book> bookList;
 
+    /**
+     * Създава нов празен списък с книги.
+     */
     public BookList() {
         bookList = new ArrayList<>();
     }
 
+    /**
+     * Връща списъка с книги.
+     *
+     * @return списък от книги
+     */
     public List<Book> getBookList() {
         return bookList;
     }
 
+    /**
+     * Добавя нова книга чрез въвеждане на информация от потребителя.
+     */
     public void add() {
         Book newBook = new Book();
         Scanner scanner = new Scanner(System.in);
@@ -39,6 +54,11 @@ public class BookList {
         System.out.println("Successfully added a book!\n");
     }
 
+    /**
+     * Премахва книга от списъка по зададен ISBN.
+     *
+     * @param isbn уникален идентификатор на книгата
+     */
     public void remove(String isbn) {
         for (Book book : bookList) {
             if (book.getIsbn().equals(isbn)) {
@@ -50,6 +70,9 @@ public class BookList {
         System.out.println("Book with isbn: " + isbn + " not found!\n");
     }
 
+    /**
+     * Извежда информация за всички книги в списъка (заглавие,  автор, жанр, isbn).
+     */
     public void all() {
         for (Book item : bookList) {
             System.out.println("Title: " + item.getTitle());
@@ -61,6 +84,11 @@ public class BookList {
         System.out.println();
     }
 
+    /**
+     * Извежда пълна информация за книга с определен ISBN.
+     *
+     * @param isbn уникален идентификатор на книгата
+     */
     public void info(String isbn) {
         for (Book item : bookList) {
             if (item.getIsbn().equals(isbn)) {
@@ -80,6 +108,12 @@ public class BookList {
         System.out.println("Book with isbn: " + isbn + " not found!\n");
     }
 
+    /**
+     * Търси книги по зададен критерий: заглавие, автор или таг.
+     *
+     * @param option тип на търсенето (title, author, tag)
+     * @param search търсена стойност
+     */
     public void find(String option, String search) {
         for (Book book : bookList) {
             switch (option) {
@@ -120,6 +154,11 @@ public class BookList {
         }
     }
 
+    /**
+     * Зарежда книги от текстов файл.
+     *
+     * @param fileName име на файла, от който се чете
+     */
     public void readFromFile(String fileName) {
         String projectRoot = System.getProperty("user.dir");
         File file = new File(projectRoot, "myFiles/" + fileName);
@@ -148,10 +187,19 @@ public class BookList {
         }
     }
 
+    /**
+     * Изтрива всички книги от списъка.
+     */
     public void clear() {
         bookList.clear();
     }
 
+    /**
+     * Сортира списъка от книги по зададен критерий чрез алгоритъм Insertion Sort.
+     *
+     * @param criteria критерий за сортиране ("title", "author", "year", "rating")
+     * @param order    ред на сортиране: "asc" за възходящо, "desc" за низходящо
+     */
     //https://www.geeksforgeeks.org/insertion-sort-algorithm/
     public void insertionSort(String criteria, String order) {
         boolean reverse = false;

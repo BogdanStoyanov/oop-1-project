@@ -13,7 +13,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Класът {@code CommandSetter} предоставя метод за управляване на
+ * файлове, потребители и книги.
+ * <p>
+ * Използва {@code Runnable} обекти за представяне на действия,
+ * които могат да се извикват по команда от потребителския интерфейс.
+ */
 public class CommandSetter {
+    /**
+     * Настройва и връща мапа от с всички основни команди на системата.
+     *  Тези команди позволяват управление на:
+     *       <ul>
+     *           <li>файлове (open, close, save, saveas)</li>
+     *           <li>потребители (login, logout, users)</li>
+     *           <li>книги (books)</li>
+     *           <li>други операции (help, exit)</li>
+     *       </ul>
+     *
+     * @param scanner     {@code Scanner} за въвеждане на данни от потребителя
+     * @param currentUser следи дали текущия потребител е: отворил файл; логнат; админ; името на файла, ако го е отворил
+     * @param bookList    списъкът с книги, върху който ще се прилагат командите
+     * @param userList    списъкът с потребители
+     * @param userFile    име на файла, съдържащ потребителските данни
+     * @return Map, който съпоставя име на команда с нейното действие (Runnable)
+     */
     public static Map<String, Runnable> setCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
                                                     UserList userList, String userFile) {
         Map<String, Runnable> commands = new HashMap<>();

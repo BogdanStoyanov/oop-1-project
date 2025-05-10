@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"bg.tu_varna.sit.a2.f23621757.application"},{"l":"bg.tu_varna.sit.a2.f23621757.book"},{"l":"bg.tu_varna.sit.a2.f23621757.commands"},{"l":"bg.tu_varna.sit.a2.f23621757.file"},{"l":"bg.tu_varna.sit.a2.f23621757.printer"},{"l":"bg.tu_varna.sit.a2.f23621757.user"}];updateSearchResults();

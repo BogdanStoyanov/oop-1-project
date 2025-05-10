@@ -9,7 +9,18 @@ import bg.tu_varna.sit.a2.f23621757.user.UserList;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Входна точка на програмата.
+ * Инициализират се основни обекти нужни за нейното изпълнение.
+ */
 public class ApplicationLibrary {
+    /**
+     * Основна входна точка на приложението, която инициализира и стартира всички нужни компоненти.
+     * Това включва зареждане на данни за потребители и книги, инициализиране на команди
+     * и стартиране на основния цикъл за изпълнение на командите.
+     *
+     * @param args параметри подадени от командния ред
+     */
     public static void main(String[] args) {
         ConsolePrinter.welcome();
         Scanner scanner = new Scanner(System.in);
