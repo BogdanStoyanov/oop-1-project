@@ -1,6 +1,10 @@
 bg.tu_varna.sit.a2.f23621757.application
 bg.tu_varna.sit.a2.f23621757.book
-bg.tu_varna.sit.a2.f23621757.commands
+bg.tu_varna.sit.a2.f23621757.commands.commands_classes.book_commands
+bg.tu_varna.sit.a2.f23621757.commands.commands_classes.general_commands
+bg.tu_varna.sit.a2.f23621757.commands.commands_classes.user_commands
+bg.tu_varna.sit.a2.f23621757.commands.commands_interface
+bg.tu_varna.sit.a2.f23621757.commands.commands_setter
 bg.tu_varna.sit.a2.f23621757.file
 bg.tu_varna.sit.a2.f23621757.printer
 bg.tu_varna.sit.a2.f23621757.user

@@ -75,9 +75,9 @@ public class UserList {
      * Извършва опит за вход в системата с дадени потребителско име и парола.
      * При успешно влизане, настройва текущия потребител.
      *
-     * @param username     потребителско име
-     * @param password     парола
-     * @param currentUser  обект на текущия потребител, който ще бъде актуализиран при успех
+     * @param username    потребителско име
+     * @param password    парола
+     * @param currentUser обект на текущия потребител, който ще бъде актуализиран при успех
      */
     public void logIn(String username, String password, CurrentUser currentUser) {
         for (User user : userList) {

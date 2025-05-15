@@ -78,7 +78,7 @@ public class BookList {
             System.out.println("Title: " + item.getTitle());
             System.out.println("Author: " + item.getAuthor());
             System.out.println("Genre: " + item.getGenre());
-            System.out.println("ISBN: " +item.getIsbn());
+            System.out.println("ISBN: " + item.getIsbn());
             System.out.println("***********************************************************");
         }
         System.out.println();
@@ -97,7 +97,7 @@ public class BookList {
                 System.out.println("Genre: " + item.getGenre());
                 System.out.println("Description: " + item.getDescription());
                 System.out.println("Year: " + item.getYearOfPublishing());
-                System.out.println("Tag: "+ item.getTag());
+                System.out.println("Tag: " + item.getTag());
                 System.out.println("Rating: " + item.getRating());
                 System.out.println("ISBN: " + item.getIsbn());
                 System.out.println();

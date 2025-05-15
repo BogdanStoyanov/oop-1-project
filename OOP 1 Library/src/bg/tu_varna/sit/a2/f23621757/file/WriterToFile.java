@@ -56,8 +56,6 @@ public class WriterToFile {
      *                 Записват се потребителското име, паролата и статусът на администратор.
      * @param fileName Името на файла, в който ще бъдат записани данните на потребителите.
      *                 Файлът ще бъде запазен в директорията "myFiles".
-     *
-     *
      */
     public static void writeUsersToFile(UserList userList, String fileName) {
         File directory = new File("myFiles");

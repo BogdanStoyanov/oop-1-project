@@ -1,6 +1,9 @@
-package bg.tu_varna.sit.a2.f23621757.commands;
+package bg.tu_varna.sit.a2.f23621757.commands.commands_setter;
 
 import bg.tu_varna.sit.a2.f23621757.book.BookList;
+import bg.tu_varna.sit.a2.f23621757.commands.commands_classes.user_commands.RemoveCommand;
+import bg.tu_varna.sit.a2.f23621757.commands.commands_classes.user_commands.UsersAddCommand;
+import bg.tu_varna.sit.a2.f23621757.commands.commands_interface.Command;
 import bg.tu_varna.sit.a2.f23621757.file.WriterToFile;
 import bg.tu_varna.sit.a2.f23621757.printer.ConsolePrinter;
 import bg.tu_varna.sit.a2.f23621757.user.CurrentUser;
@@ -14,7 +17,7 @@ import java.util.Scanner;
  * Класът {@code UserCommandSetter} предоставя метод за настройване на
  * команди, свързани с операции върху потребутели.
  * <p>
- * Използва {@code Runnable} обекти за представяне на действия,
+ * Използва обекти за представяне на действия,
  * които могат да се извикват по команда от потребителския интерфейс.
  */
 public class UserCommandSetter {
@@ -31,48 +34,11 @@ public class UserCommandSetter {
      * @param userFile    път до файла с потребителска информация
      * @return {@code Map} с командите за потребителско управление
      */
-    public static Map<String, Runnable> setUserCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
-                                                        UserList userList, String userFile) {
-        Map<String, Runnable> userCommands = new HashMap<>();
-
-        userCommands.put("add", () -> {
-            String username, password;
-            username = scanner.next();
-            password = scanner.next();
-
-            if (!currentUser.isHasLoggedIn()) {
-                ConsolePrinter.askForUser();
-                return;
-            }
-            if (!currentUser.isAdmin()) {
-                ConsolePrinter.askForAdmin();
-                return;
-            }
-            if(userList.checkForUsername(username)){
-                System.out.println("Username already exists!");
-                return;
-            }
-
-            userList.add(username, password, false);
-            WriterToFile.writeUsersToFile(userList, userFile);
-            System.out.println("Successfully added a user!\n");
-        });
-
-        userCommands.put("remove", () -> {
-            String username;
-            username = scanner.next();
-            if (!currentUser.isHasLoggedIn()) {
-                ConsolePrinter.askForUser();
-                return;
-            }
-            if (!currentUser.isAdmin()) {
-                ConsolePrinter.askForAdmin();
-                return;
-            }
-            userList.remove(username);
-            WriterToFile.writeUsersToFile(userList, userFile);
-        });
-
+    public static Map<String, Command> setUserCommands(Scanner scanner, CurrentUser currentUser, BookList bookList,
+                                                       UserList userList, String userFile) {
+        Map<String, Command> userCommands = new HashMap<>();
+        userCommands.put("add", new UsersAddCommand(scanner, currentUser, userList, userFile));
+        userCommands.put("remove", new RemoveCommand(scanner, currentUser, userList, userFile));
         return userCommands;
     }
 }
